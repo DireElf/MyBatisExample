@@ -1,0 +1,2 @@
+TRUNCATE TABLE employees;
+ALTER SEQUENCE employees_id_seq RESTART WITH 1;

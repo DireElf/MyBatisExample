@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="elf.dire.mapper.EmployeeMapper">
+    <select id="findById" parameterType="long" resultType="elf.dire.model.Employee">
+        SELECT * FROM employees WHERE id = #{id}
+    </select>
+
+    <select id="findAll" resultType="elf.dire.model.Employee">
+        SELECT * FROM employees
+    </select>
+
+    <insert id="insert" parameterType="elf.dire.model.Employee">
+        INSERT INTO employees (name, surname, email, age) VALUES (#{name}, #{surname}, #{email}, #{age})
+    </insert>
+</mapper>

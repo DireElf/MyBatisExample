@@ -35,6 +35,13 @@
       <version>2.2.0</version>
     </dependency>
 
+    <!-- Тестирование Spring Boot -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+
     <!-- PostgreSQL JDBC Driver -->
     <dependency>
       <groupId>org.postgresql</groupId>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <!-- Настройка логирования -->
+    <settings>
+        <!-- Включаем вывод SQL-запросов в лог -->
+        <setting name="logImpl" value="STDOUT_LOGGING" />
+
+        <!-- Автоматический маппинг столбцов в поля объекта -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <!-- Алиасы для простых объектов -->
+    <typeAliases>
+        <typeAlias alias="Emp" type="elf.dire.model.Employee" />
+    </typeAliases>
+
+    <!-- Мапперы -->
+    <mappers>
+        <!-- Подключение мапперов через XML-файлы -->
+        <mapper resource="mybatis/mappers/EmployeeMapper.xml" />
+    </mappers>
+</configuration>
