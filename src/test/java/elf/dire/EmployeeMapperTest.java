@@ -9,8 +9,7 @@ import org.springframework.test.context.jdbc.Sql;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Sql(scripts = "classpath:create_test_data.sql", executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
@@ -21,7 +20,7 @@ public class EmployeeMapperTest {
     private EmployeeMapper employeeMapper;
 
     @Test
-    void findById() {
+    void findByIdTest() {
         Employee employee = employeeMapper.findById(1L);
         assertNotNull(employee, "Employee is null");
         assertEquals("John", employee.getName());
@@ -31,7 +30,7 @@ public class EmployeeMapperTest {
     }
 
     @Test
-    void findAll() {
+    void findAllTest() {
         List<Employee> employeeList = employeeMapper.findAll();
         assertEquals(2, employeeList.size());
         System.out.println(employeeList.get(0).getName());
@@ -39,7 +38,7 @@ public class EmployeeMapperTest {
     }
 
     @Test
-    void insert() {
+    void insertTest() {
         Employee employee = new Employee();
         employee.setName("TestName");
         employee.setSurname("TestSurname");
@@ -48,5 +47,28 @@ public class EmployeeMapperTest {
         employeeMapper.insert(employee);
         List<Employee> employeeList = employeeMapper.findAll();
         assertEquals(3, employeeList.size());
+    }
+
+    @Test
+    void deleteTest() {
+        List<Employee> employeeListBefore = employeeMapper.findAll();
+        assertEquals(2, employeeListBefore.size());
+        employeeMapper.delete(1L);
+        List<Employee> employeeListAfter = employeeMapper.findAll();
+        assertEquals(1, employeeListAfter.size());
+    }
+
+    @Test
+    void updateTest() {
+        Employee employee = new Employee();
+        employee.setId(1L);
+        employee.setName("TestName");
+        employee.setSurname("TestSurname");
+        employee.setEmail("test@test.com");
+        employee.setAge(55);
+        Employee empBefore = employeeMapper.findById(1L);
+        employeeMapper.update(employee);
+        Employee empAfter = employeeMapper.findById(1L);
+        assertNotEquals(empBefore, empAfter);
     }
 }

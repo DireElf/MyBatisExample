@@ -15,4 +15,12 @@
     <insert id="insert" parameterType="elf.dire.model.Employee">
         INSERT INTO employees (name, surname, email, age) VALUES (#{name}, #{surname}, #{email}, #{age})
     </insert>
+
+    <update id="update" parameterType="elf.dire.model.Employee">
+        UPDATE employees SET name = #{name}, surname = #{surname}, email = #{email}, age = #{age} WHERE id = #{id}
+    </update>
+
+    <delete id="delete" parameterType="long">
+        DELETE FROM employees WHERE id = #{id}
+    </delete>
 </mapper>
